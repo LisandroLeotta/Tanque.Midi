@@ -7,6 +7,10 @@ public class MovementController : MonoBehaviour
     [Header("Set Movement")]
     [SerializeField] private float speed = 0f;
     
+    [Header("Set Rotation")]
+    [SerializeField] private float turnSmoothTime = 0.1f;
+    [SerializeField] private float turnSmoothVelocity = 0f;
+
     private Rigidbody rb;
     private Vector3 movementImput;
 
@@ -17,6 +21,7 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
+        /*
         movementImput = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
@@ -36,6 +41,12 @@ public class MovementController : MonoBehaviour
         {
             movementImput.x = 1;
         }
+        */
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        movementImput = new Vector3(horizontal, 0, vertical);
+
+        Rotar(movementImput);
     }
 
     protected void FixedUpdate()
@@ -46,5 +57,15 @@ public class MovementController : MonoBehaviour
     private void Move(Vector3 direction)
     {
         rb.AddForce(direction.normalized * speed, ForceMode.Acceleration);
+    }
+
+    private void Rotar(Vector3 rotar)
+    {
+        float targetAngle = Mathf.Atan2(rotar.x, rotar.z) * Mathf.Rad2Deg;                                                          //Calcula la rotacion segun el movimiento en los ejes.
+
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);         //Suabiza la rotacion.
+
+        //transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            
     }
 }
