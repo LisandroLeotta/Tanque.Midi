@@ -5,67 +5,30 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     [Header("Set Movement")]
-    [SerializeField] private float speed = 0f;
+    [SerializeField] private float speedForward;
     
     [Header("Set Rotation")]
-    [SerializeField] private float turnSmoothTime = 0.1f;
-    [SerializeField] private float turnSmoothVelocity = 0f;
+    [SerializeField] private float speedRotate;
 
-    private Rigidbody rb;
-    private Vector3 movementImput;
+    private float rotateBody;
+    private float moveForward;
+   // private Rigidbody rb;
+   // private Vector3 acceleration;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    public void Update()
     {
-        /*
-        movementImput = Vector3.zero;
+        rotateBody = Input.GetAxisRaw("Horizontal");
+        moveForward = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            movementImput.z = 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            movementImput.z = -1;
-        }
+        //acceleration.z = moveForward;
+        //rb.AddForce(acceleration.normalized * speedForward, ForceMode.Acceleration); 
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            movementImput.x = -1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            movementImput.x = 1;
-        }
-        */
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        movementImput = new Vector3(horizontal, 0, vertical);
-
-        Rotar(movementImput);
-    }
-
-    protected void FixedUpdate()
-    {
-        Move(movementImput);
-    }
-
-    private void Move(Vector3 direction)
-    {
-        rb.AddForce(direction.normalized * speed, ForceMode.Acceleration);
-    }
-
-    private void Rotar(Vector3 rotar)
-    {
-        float targetAngle = Mathf.Atan2(rotar.x, rotar.z) * Mathf.Rad2Deg;                                                          //Calcula la rotacion segun el movimiento en los ejes.
-
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);         //Suabiza la rotacion.
-
-        //transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
+        transform.Translate( Vector3.forward * speedForward * Time.deltaTime * -moveForward );
+        transform.Rotate( Vector3.up, rotateBody * speedRotate * Time.deltaTime);
     }
 }
