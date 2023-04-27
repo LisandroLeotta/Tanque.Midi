@@ -28,7 +28,7 @@ public class MovementController : MonoBehaviour
         //acceleration.z = moveForward;
         //rb.AddForce(acceleration.normalized * speedForward, ForceMode.Acceleration); 
 
-        transform.Translate( Vector3.forward * speedForward * Time.deltaTime * -moveForward );
-        transform.Rotate( Vector3.up, rotateBody * speedRotate * Time.deltaTime);
+        transform.Translate(Vector3.forward * speedForward * Time.deltaTime * -moveForward);
+        transform.Rotate(Vector3.up, rotateBody * speedRotate * Time.deltaTime);
     }
 }
