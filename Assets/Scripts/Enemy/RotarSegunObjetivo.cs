@@ -26,12 +26,15 @@ public class RotarSegunObjetivo : MonoBehaviour
             if (isAlert)
             {
                 Vector3 positionObjetive = new Vector3 (objetive.position.x, transform.position.y, objetive.position.z);
-                transform.LookAt(positionObjetive);
-                transform.position = Vector3.MoveTowards(transform.position, positionObjetive, atacSpeed);
+                //transform.LookAt(positionObjetive);
+                Rotar();
+                transform.position = Vector3.MoveTowards(transform.position, positionObjetive, atacSpeed * Time.deltaTime);
             }
         }
         else
         {
+            Vector3 positionObjetive = new Vector3 (objetive.position.x, transform.position.y, objetive.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, positionObjetive, atacSpeed * Time.deltaTime);
             Rotar();
         }
     }

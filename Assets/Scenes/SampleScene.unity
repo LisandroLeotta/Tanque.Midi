@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68272054}
   - component: {fileID: 68272055}
+  - component: {fileID: 68272056}
   m_Layer: 0
   m_Name: Coche
   m_TagString: Untagged
@@ -148,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68272052}
   m_LocalRotation: {x: -0, y: 0.9790048, z: -0, w: 0.20383745}
-  m_LocalPosition: {x: 0, y: 1.03, z: 0}
+  m_LocalPosition: {x: 6.45, y: 1.03, z: -14.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -173,6 +174,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &68272056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68272052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d3ea232983045438a4b0d2e977a399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objetive: {fileID: 1082070843}
+  isCenitnella: 0
+  alertRange: 0
+  layerObjetive:
+    serializedVersion: 2
+    m_Bits: 0
+  atacSpeed: 10
 --- !u!4 &99181513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19f13458cc74af54e992846933279d26, type: 3}
@@ -1166,7 +1186,7 @@ MonoBehaviour:
   layerObjetive:
     serializedVersion: 2
     m_Bits: 8
-  atacSpeed: 0.1
+  atacSpeed: 4
 --- !u!136 &1309823888
 CapsuleCollider:
   m_ObjectHideFlags: 0
